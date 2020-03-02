@@ -5,7 +5,7 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${vcpkgRoot}/x64-osx/include",
-                "/usr/local/Cellar/sdl2/2.0.10/include/SDL2"
+                "/Users/vku/bin/vcpkg/installed/x64-osx/include"
             ],
             "defines": [],
             "macFrameworkPath": [

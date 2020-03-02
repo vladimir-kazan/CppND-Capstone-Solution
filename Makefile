@@ -23,9 +23,10 @@ build-dev: | $(DEBUG_DEST)
 
 $(DEBUG_DEST):
 	@mkdir -p $@
-	@cd $@ && cmake -DCMAKE_BUILD_TYPE=Debug ..
+	@cd $@ && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=/Users/vku/bin/vcpkg/scripts/buildsystems/vcpkg.cmake ..
 
+# LLVM, Google, Chromium, Mozilla, WebKit
 format:
-	clang-format -i src/*
+	clang-format --style=Chromium -i src/*.h src/*.cpp
 
 .PHONY: clean release run build-dev dev format

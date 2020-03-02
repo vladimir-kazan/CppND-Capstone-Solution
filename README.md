@@ -20,7 +20,10 @@ In this project, you can build your own C++ application starting with this repo,
 * SDL2 >= 2.0
   * All installation instructions can be found [here](https://wiki.libsdl.org/Installation)
   * Note that for Linux, an `apt` or `apt-get` installation is preferred to building from source.
-
+  * https://www.libsdl.org/download-2.0.php
+* SDL2_ttf
+  * `brew install sdl2_ttf`
+  * TODO: for linux
 ## Basic Build Instructions
 
 1. Clone this repo.
