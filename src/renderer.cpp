@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include "SDL_ttf.h"
+#include "SDL2/SDL_ttf.h"
 
 Renderer::Renderer(RendererOptions options)
     : _width(options.width), _height(options.height) {

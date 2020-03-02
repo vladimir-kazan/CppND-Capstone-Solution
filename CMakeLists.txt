@@ -27,6 +27,8 @@ message(STATUS "SLD2_VERSION ${SLD2_VERSION}")
 
 find_package(SDL2-ttf CONFIG REQUIRED)
 find_package(freetype CONFIG REQUIRED)
+find_package(libpng CONFIG REQUIRED)
+
 
 
 
@@ -42,6 +44,7 @@ add_executable(${NAME} ${SOURCES})
 target_link_libraries(${NAME} PRIVATE SDL2::SDL2main SDL2::SDL2-static)
 target_link_libraries(${NAME} PRIVATE SDL2::SDL2_ttf)
 target_link_libraries(${NAME} PRIVATE freetype)
+target_link_libraries(${NAME} PRIVATE png_static)
 
 
 # string(STRIP "${SDL2_LIBRARY}" SDL2_LIBRARY)
