@@ -29,4 +29,5 @@ Renderer::Renderer(RendererOptions options)
 Renderer::~Renderer() {
   SDL_DestroyWindow(sdlWindow);
   SDL_Quit();
+  std::cout << "Renderer destroyed" << std::endl;
 }

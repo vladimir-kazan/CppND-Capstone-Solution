@@ -1,30 +1,31 @@
-.PHONY: clean build-dev build run run-dev
+DEBUG_DEST = debug
+RELEASE_DEST = build
 
 clean:
 	rm -rf debug/
 	rm -rf build/
 
-build-dev:
-	mkdir -p debug
-	cd debug \
-	&& cmake -DCMAKE_BUILD_TYPE=Debug .. \
-	&& make
-
-build:
-	mkdir -p build
-	cd build \
-	&& cmake -DCMAKE_BUILD_TYPE=Release .. \
-	&& make
-
 run:
-	@build/game
+	@$(RELEASE_DEST)/game
 
-run-dev:
-	@debug/game
+release: $(RELEASE_DEST)
+	@cd $(RELEASE_DEST) && make
 
-.PHONY: dev
-dev: build-dev run-dev
+$(RELEASE_DEST):
+	@mkdir -p $@
+	@cd $@ && cmake -DCMAKE_BUILD_TYPE=Release ..
 
-.PHONY: format
+dev: build-dev
+	@$(DEBUG_DEST)/game
+
+build-dev: | $(DEBUG_DEST)
+	@cd $(DEBUG_DEST) && make
+
+$(DEBUG_DEST):
+	@mkdir -p $@
+	@cd $@ && cmake -DCMAKE_BUILD_TYPE=Debug ..
+
 format:
 	clang-format -i src/*
+
+.PHONY: clean release run build-dev dev format
