@@ -43,13 +43,20 @@ Renderer::~Renderer() {
 
 void Renderer::SetTitle(const char* title) {
   _title = title;
+  _updateTitle();
 }
 void Renderer::SetTitle(string& title) {
   _title = title.c_str();
+  _updateTitle();
 }
 
 void Renderer::Render() {
   // Clear screen
   SDL_SetRenderDrawColor(_sdlRenderer, 0x1E, 0x1E, 0x1E, 0xFF);
   SDL_RenderClear(_sdlRenderer);
+}
+
+// private
+void Renderer::_updateTitle() {
+  SDL_SetWindowTitle(_sdlWindow, _title);
 }

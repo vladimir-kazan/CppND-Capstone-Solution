@@ -28,6 +28,7 @@ class Renderer {
   const size_t _width;
   const size_t _height;
   const char* _title;
+  void _updateTitle();
 };
 
 #endif
