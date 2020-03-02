@@ -11,7 +11,7 @@ Game::~Game() {
   std::cout << "Game destroyed" << std::endl;
 }
 
-void Game::Run(Controller&& controller, Renderer&& renderer) {
+void Game::Run(Controller&& controller, Renderer&& renderer, std::size_t frameDuration) {
   bool running = true;
   Uint32 title_timestamp = SDL_GetTicks();
   std::cout << "Running.." << std::endl;

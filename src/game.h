@@ -8,7 +8,7 @@ class Game {
  public:
   Game();
   ~Game();
-  void Run(Controller&& controller, Renderer&& renderer);
+  void Run(Controller&& controller, Renderer&& renderer, std::size_t frameDuration);
 
  private:
 };

@@ -11,7 +11,7 @@ using std::string;
 struct RendererOptions {
   size_t width;
   size_t height;
-  string caption;
+  const char* title;
 };
 
 class Renderer {

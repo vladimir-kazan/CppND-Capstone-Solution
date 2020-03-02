@@ -5,7 +5,7 @@
 #include "SDL2/SDL_ttf.h"
 
 Renderer::Renderer(RendererOptions options)
-    : _width(options.width), _height(options.height) {
+    : _width(options.width), _height(options.height), _title(options.title) {
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     std::cerr << "SDL could not initialize.\n";
@@ -31,6 +31,7 @@ Renderer::Renderer(RendererOptions options)
   if (TTF_Init() != 0) {
     std::cerr << "SDL could not initialize.\n";
   }
+  _updateTitle();
 
   std::cout << "Renderer created" << std::endl;
 }
@@ -58,5 +59,7 @@ void Renderer::Render() {
 
 // private
 void Renderer::_updateTitle() {
-  SDL_SetWindowTitle(_sdlWindow, _title);
+  if (_sdlWindow != nullptr) {
+    SDL_SetWindowTitle(_sdlWindow, _title);
+  }
 }
