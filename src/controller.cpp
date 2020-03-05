@@ -15,8 +15,15 @@ Controller::~Controller() {
 void Controller::HandleInput(bool& running) {
   SDL_Event e;
   while (SDL_PollEvent(&e)) {
-    if (e.type == SDL_QUIT) {
-      running = false;
+    switch (e.type) {
+      case SDL_QUIT:
+        running = false;
+        break;
+      case SDL_KEYDOWN:
+
+        break;
+      default:
+        break;
     }
   }
 }

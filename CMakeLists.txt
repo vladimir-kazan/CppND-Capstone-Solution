@@ -12,7 +12,7 @@ find_package(SDL2-ttf CONFIG REQUIRED)
 find_package(freetype CONFIG REQUIRED)
 find_package(libpng CONFIG REQUIRED)
 
-file(GLOB SOURCES "src/*.cpp")
+file(GLOB_RECURSE SOURCES "src/*.cpp")
 add_executable(${NAME} ${SOURCES})
 
 target_link_libraries(${NAME} PRIVATE SDL2::SDL2main SDL2::SDL2-static)

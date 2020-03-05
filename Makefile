@@ -34,6 +34,6 @@ $(DEBUG_DEST):
 
 # LLVM, Google, Chromium, Mozilla, WebKit
 format:
-	clang-format --style=Chromium -i src/*.h src/*.cpp
+	find src -name '*[.cpp]' -type f -o -name '*[.h]' -type f | xargs clang-format --style=Chromium --verbose -i
 
 .PHONY: clean release run build-dev dev format ${DEBUG_DEST} ${RELEASE_DEST}

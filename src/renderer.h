@@ -4,6 +4,8 @@
 #include <string>
 
 #include "SDL2/SDL.h"
+#include "objects/object2D.h"
+#include "utils.h"
 
 using std::size_t;
 using std::string;
@@ -12,6 +14,7 @@ struct RendererOptions {
   size_t width;
   size_t height;
   const char* title;
+  Color clearColor;
 };
 
 class Renderer {
@@ -20,7 +23,7 @@ class Renderer {
   ~Renderer();
   void SetTitle(const char* title);
   void SetTitle(string& title);
-  void Render();
+  void Render(const std::vector<Object2D*>& objects);
 
  private:
   SDL_Window* _sdlWindow;
@@ -28,6 +31,7 @@ class Renderer {
   const size_t _width;
   const size_t _height;
   const char* _title;
+  Color _clearColor;
   void _updateTitle();
 };
 

@@ -1,16 +1,27 @@
 #include "renderer.h"
 
 #include <iostream>
+#include <vector>
 
 #include "SDL2/SDL_ttf.h"
+#include "objects/object2D.h"
 
 Renderer::Renderer(RendererOptions options)
-    : _width(options.width), _height(options.height), _title(options.title) {
+    : _width(options.width),
+      _height(options.height),
+      _title(options.title),
+      _clearColor(options.clearColor) {
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     std::cerr << "SDL could not initialize.\n";
     std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
   }
+
+  if (TTF_Init() != 0) {
+    std::cerr << "SDL TTF could not initialize.\n";
+    std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
+  }
+
   // Create Window
   _sdlWindow = SDL_CreateWindow(_title, SDL_WINDOWPOS_CENTERED,
                                 SDL_WINDOWPOS_CENTERED, _width, _height,
@@ -28,9 +39,8 @@ Renderer::Renderer(RendererOptions options)
     std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
   }
 
-  if (TTF_Init() != 0) {
-    std::cerr << "SDL could not initialize.\n";
-  }
+  SDL_RenderSetLogicalSize(_sdlRenderer, _width, _height);
+
   _updateTitle();
 
   std::cout << "Renderer created" << std::endl;
@@ -46,15 +56,23 @@ void Renderer::SetTitle(const char* title) {
   _title = title;
   _updateTitle();
 }
+
 void Renderer::SetTitle(string& title) {
   _title = title.c_str();
   _updateTitle();
 }
 
-void Renderer::Render() {
+void Renderer::Render(const std::vector<Object2D*>& objects) {
   // Clear screen
-  SDL_SetRenderDrawColor(_sdlRenderer, 0x1E, 0x1E, 0x1E, 0xFF);
+  SDL_SetRenderDrawColor(_sdlRenderer, _clearColor.r, _clearColor.g,
+                         _clearColor.b, _clearColor.a);
   SDL_RenderClear(_sdlRenderer);
+
+  for (auto obj : objects) {
+    obj->Render(*_sdlRenderer);
+  }
+
+  SDL_RenderPresent(_sdlRenderer);
 }
 
 // private
