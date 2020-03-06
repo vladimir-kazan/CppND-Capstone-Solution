@@ -40,7 +40,7 @@ Renderer::Renderer(RendererOptions options)
   }
 
   SDL_RenderSetLogicalSize(_sdlRenderer, _width, _height);
-
+  // SDL_SetRenderDrawBlendMode(_sdlRenderer, SDL_BLENDMODE_BLEND);
   _updateTitle();
 
   std::cout << "Renderer created" << std::endl;

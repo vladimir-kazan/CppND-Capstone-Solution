@@ -20,7 +20,20 @@ void Controller::HandleInput(bool& running) {
         running = false;
         break;
       case SDL_KEYDOWN:
-
+        switch (e.key.keysym.sym) {
+          case SDLK_LEFT:
+            std::cout << "left" << std::endl;
+            break;
+          case SDLK_RIGHT:
+            std::cout << "right" << std::endl;
+            break;
+          case SDLK_UP:
+            std::cout << "up" << std::endl;
+            break;
+          case SDLK_DOWN:
+            std::cout << "down" << std::endl;
+            break;
+        }
         break;
       default:
         break;
