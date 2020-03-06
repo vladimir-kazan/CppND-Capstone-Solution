@@ -18,14 +18,9 @@ void Board::SetSize(uint width, uint height, uint thickness) {
   _thickness = thickness;
 }
 
-void Board::SetPosition(uint x, uint y) {
-  _x = x;
-  _y = y;
-}
-
 void Board::Render(SDL_Renderer& renderer) {
-  using Colors::Border;
   using Colors::BorderLight;
+  using Colors::Frame;
 
   // https://wiki.libsdl.org/SDL_Rect
   // SDL_SetRenderDrawColor(&renderer, BorderLight.r, BorderLight.g,
@@ -38,29 +33,33 @@ void Board::Render(SDL_Renderer& renderer) {
   uint y2 = _y + _height;
   uint offset = _thickness / 2;
 
-  SDL_SetRenderDrawColor(&renderer, Border.r, Border.g, Border.b, Border.a);
+  SDL_SetRenderDrawColor(&renderer, Frame.r, Frame.g, Frame.b, Frame.a);
   SDL_RenderDrawLine(&renderer, x1, y1, x2, y1);  // top1
-  SDL_RenderDrawLine(&renderer, x1 + offset, y1 + offset, x2 - offset, y1 + offset);  // top2
+  SDL_RenderDrawLine(&renderer, x1 + offset, y1 + offset, x2 - offset,
+                     y1 + offset);                // top2
   SDL_RenderDrawLine(&renderer, x1, y2, x2, y2);  // bottom
-  SDL_RenderDrawLine(&renderer, x1 + offset, y2 - offset, x2 - offset, y2 - offset);  // bottom
+  SDL_RenderDrawLine(&renderer, x1 + offset, y2 - offset, x2 - offset,
+                     y2 - offset);                // bottom
   SDL_RenderDrawLine(&renderer, x1, y1, x1, y2);  // left
-  SDL_RenderDrawLine(&renderer, x1 + offset, y1 + offset, x1 + offset, y2 - offset);  // left
+  SDL_RenderDrawLine(&renderer, x1 + offset, y1 + offset, x1 + offset,
+                     y2 - offset);                // left
   SDL_RenderDrawLine(&renderer, x2, y1, x2, y2);  // right
-  SDL_RenderDrawLine(&renderer, x2 - offset, y1 + offset, x2 - offset, y2 - offset);  // right
+  SDL_RenderDrawLine(&renderer, x2 - offset, y1 + offset, x2 - offset,
+                     y2 - offset);  // right
 
-  uint stepX = (_width - _thickness) / 6;
-  uint stepY = (_height - _thickness) / 6;
+  // uint stepX = (_width - _thickness) / 6;
+  // uint stepY = (_height - _thickness) / 6;
 
-  x1 = x1 + offset;
-  y1 = y1 + offset;
-  y2 = y2 - offset;
-  SDL_RenderDrawLine(&renderer, x1 + stepX, y1, x1 + stepX, y2);  // left
-  SDL_RenderDrawLine(&renderer, x1 + stepX * 2, y1, x1 + stepX * 2,
-                     y2);  // left
-  SDL_RenderDrawLine(&renderer, x1 + stepX * 3, y1, x1 + stepX * 3,
-                     y2);  // left
-  SDL_RenderDrawLine(&renderer, x1 + stepX * 4, y1, x1 + stepX * 4,
-                     y2);  // left
-  SDL_RenderDrawLine(&renderer, x1 + stepX * 5, y1, x1 + stepX * 5,
-                     y2);  // left
+  // x1 = x1 + offset;
+  // y1 = y1 + offset;
+  // y2 = y2 - offset;
+  // SDL_RenderDrawLine(&renderer, x1 + stepX, y1, x1 + stepX, y2);  // left
+  // SDL_RenderDrawLine(&renderer, x1 + stepX * 2, y1, x1 + stepX * 2,
+  //                    y2);  // left
+  // SDL_RenderDrawLine(&renderer, x1 + stepX * 3, y1, x1 + stepX * 3,
+  //                    y2);  // left
+  // SDL_RenderDrawLine(&renderer, x1 + stepX * 4, y1, x1 + stepX * 4,
+  //                    y2);  // left
+  // SDL_RenderDrawLine(&renderer, x1 + stepX * 5, y1, x1 + stepX * 5,
+  //                    y2);  // left
 }

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 
+#include "objects/empty-block.h"
 #include "objects/object2D.h"
 
 Game::Game() {
@@ -19,6 +20,9 @@ void Game::Run(Controller&& controller,
                std::size_t frameDuration) {
   _board.SetPosition(10, 10);
   _board.SetSize(620, 620, 20);
+
+  auto empty = EmptyBlock{20, 20, 100, 100};
+  _objects.emplace_back(&empty);
 
   bool running = true;
   Uint32 title_timestamp = SDL_GetTicks();

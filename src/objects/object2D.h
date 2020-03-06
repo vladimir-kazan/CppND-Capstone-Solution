@@ -6,6 +6,11 @@
 class Object2D {
  public:
   virtual void Render(SDL_Renderer& renderer) = 0;
+  void SetPosition(uint x, uint y);
+
+ protected:
+  uint _x;
+  uint _y;
 };
 
 #endif
