@@ -1,9 +1,5 @@
 #include "empty-block.h"
 
-#include <iostream>
-
-#include "../colors.h"
-
 EmptyBlock::EmptyBlock() {
   std::cout << "EmptyBlock created" << std::endl;
 }

@@ -1,34 +1,44 @@
 #include "game.h"
 
-#include <iostream>
-#include <vector>
+Game::Game() : _grid(6, vector<int>(6, -1)) {
+  cout << "Game created" << endl;
 
-#include "objects/empty-block.h"
-#include "objects/object2D.h"
-
-Game::Game() {
-  std::cout << "Game created" << std::endl;
+  _board.SetPosition(10, 10);
+  _board.SetSize(620, 620, 20);
   _objects.emplace_back(&_board);
+
 }
 
 Game::~Game() {
-  std::cout << "Game destroyed" << std::endl;
+  cout << "Game destroyed" << endl;
 }
 
 void Game::Run(Controller&& controller,
                Renderer&& renderer,
-               std::size_t frameDuration) {
-  _board.SetPosition(10, 10);
-  _board.SetSize(620, 620, 20);
+               size_t frameDuration) {
 
   auto empty = EmptyBlock{20, 20, 100, 100};
-  _objects.emplace_back(&empty);
+  _objects.push_back(&empty);
+
 
   bool running = true;
+  GameCommand command;
   Uint32 title_timestamp = SDL_GetTicks();
-  std::cout << "Running.." << std::endl;
+  cout << "Running.." << endl;
   while (running) {
-    controller.HandleInput(running);
+    controller.HandleInput(running, command);
+    if (command.dX != 0) {
+      cout << "dx: " << command.dX << endl;
+      command.dX = 0;
+    }
+    if (command.dY != 0) {
+      cout << "dy: " << command.dY << endl;
+      command.dY = 0;
+    }
+    if (command.selection != 0) {
+      cout << "selection: " << command.selection << endl;
+      command.selection = (char)0;
+    }
     // update game state
     // render all elements
     renderer.Render(_objects);

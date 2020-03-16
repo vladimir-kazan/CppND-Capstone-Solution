@@ -1,9 +1,12 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
+#include <iostream>
 #include <string>
+#include <vector>
 
 #include "SDL2/SDL.h"
+#include "SDL2/SDL_ttf.h"
 #include "objects/object2D.h"
 #include "utils.h"
 

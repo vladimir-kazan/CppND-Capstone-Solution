@@ -1,10 +1,5 @@
 #include "board.h"
 
-#include <iostream>
-
-#include "../colors.h"
-#include "SDL2/SDL.h"
-
 Board::Board() {
   std::cout << "Board created" << std::endl;
 }

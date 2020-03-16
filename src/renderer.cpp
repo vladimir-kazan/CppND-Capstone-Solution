@@ -1,11 +1,5 @@
 #include "renderer.h"
 
-#include <iostream>
-#include <vector>
-
-#include "SDL2/SDL_ttf.h"
-#include "objects/object2D.h"
-
 Renderer::Renderer(RendererOptions options)
     : _width(options.width),
       _height(options.height),

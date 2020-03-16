@@ -1,6 +1,9 @@
 #ifndef EMPTY_BLOCK_H
 #define EMPTY_BLOCK_H
 
+#include <iostream>
+
+#include "../colors.h"
 #include "object2D.h"
 
 class EmptyBlock : public Object2D {
