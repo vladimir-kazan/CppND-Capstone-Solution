@@ -9,10 +9,10 @@
 
 int main() {
   constexpr char title[] = "Udacity Capstone Game";
-  constexpr std::size_t screenWidth = 640;
-  constexpr std::size_t screenHeight = 680;
-  constexpr std::size_t framesPerSecond{60};
-  constexpr std::size_t msPerFrame{1000 / framesPerSecond};
+  constexpr int screenWidth = 640;
+  constexpr int screenHeight = 680;
+  constexpr int framesPerSecond{60};
+  constexpr int msPerFrame{1000 / framesPerSecond};
 
   RendererOptions options;
   options.width = screenWidth;

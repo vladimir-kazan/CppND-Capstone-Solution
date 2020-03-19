@@ -1,12 +1,12 @@
 #include "./text.h"
 
 Text::Text() {
-  _setDefaultFont();
+  _setDefaults();
   cout << "Text()" << endl;
 }
 
-Text::Text(string text) : _text(text) {
-  _setDefaultFont();
+Text::Text(char* text) : _text(text) {
+  _setDefaults();
   cout << "Text(string text)" << endl;
 }
 
@@ -15,41 +15,49 @@ Text::~Text() {
   if (_font != nullptr)
     TTF_CloseFont(_font);
   //  SDL_DestroyTexture(texture);
-  //  SDL_FreeSurface(surface);
-  //  TTF_CloseFont(font);
 }
 
 void Text::Render(SDL_Renderer& renderer) {
-  SDL_Color white{255, 255, 255};
-  SDL_Surface* solid = TTF_RenderText_Solid(_font, _text.c_str(), white);
+  SDL_Surface* solid = TTF_RenderText_Solid(_font, _text, _color);
   SDL_Texture* solidTexture = SDL_CreateTextureFromSurface(&renderer, solid);
   SDL_FreeSurface(solid);
-  SDL_Rect solidRect{120, 10, 600, 40};
-  // solidRect.x = 20;
-  // solidRect.y = 10;
-  // solidRect.w = 600;
-  // solidRect.h = 40;
+  int x = _x;
+  int y = _y;
+  if (_horizontalAlign == HorizontalAlignment::centered) {
+    x += (_w - _clipWidth) / 2;
+  }
+  if (_verticalAlign == VerticalAlignment::centered) {
+    y += (_h - _clipHeight) / 2;
+  }
+  SDL_Rect solidRect{x, y, _w, _h};
   SDL_QueryTexture(solidTexture, NULL, NULL, &solidRect.w, &solidRect.h);
   SDL_RenderCopy(&renderer, solidTexture, nullptr, &solidRect);
-
-  // SDL_Surface* surfaceMessage = TTF_RenderText_Solid(_font, _text.c_str(),
-  // white); SDL_Texture* message = SDL_CreateTextureFromSurface(renderer,
-  // surfaceMessage); SDL_Rect messageRect; messageRect.x = 20; messageRect.y =
-  // 20; messageRect.w = 600; messageRect.h = 40; SDL_RenderCopy(renderer,
-  // message, NULL, &messageRect);
 }
 
-void Text::SetText(string& text) {
+void Text::SetText(const char* text) {
   _text = text;
+  SDL_Surface* solid = TTF_RenderText_Solid(_font, _text, _color);
+  _clipWidth = solid->clip_rect.w;
+  _clipHeight = solid->clip_rect.h;
+  SDL_FreeSurface(solid);
 }
 
-void Text::SetFont(TTF_Font* font) {
-  _font = font;
+void Text::SetHorizontalAlignment(HorizontalAlignment align) {
+  _horizontalAlign = align;
 }
 
-void Text::_setDefaultFont() {
-  // if (_font != nullptr)
-  //   TTF_CloseFont(_font);
+void Text::SetVerticalAlignment(VerticalAlignment align) {
+  _verticalAlign = align;
+}
+
+void Text::SetFontSize(int size) {
+  if (_font != nullptr)
+    TTF_CloseFont(_font);
+  _font = TTF_OpenFont("fonts/sketchy.ttf", size);
+}
+
+void Text::_setDefaults() {
+  _text = (char*)" ";
   _font = TTF_OpenFont("fonts/sketchy.ttf", 24);
-  // TODO:
+  _color = Colors::White;
 }

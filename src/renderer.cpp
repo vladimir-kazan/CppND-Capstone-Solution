@@ -64,7 +64,8 @@ void Renderer::Render(const std::vector<Object2D*>& objects) {
   SDL_RenderClear(_sdlRenderer);
 
   for (auto obj : objects) {
-    obj->Render(*_sdlRenderer);
+    if (obj->IsVisible())
+      obj->Render(*_sdlRenderer);
   }
 
   SDL_RenderPresent(_sdlRenderer);

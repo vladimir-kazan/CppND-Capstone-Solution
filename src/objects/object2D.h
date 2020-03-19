@@ -6,11 +6,17 @@
 class Object2D {
  public:
   virtual void Render(SDL_Renderer& renderer) = 0;
-  void SetPosition(uint x, uint y);
+  void SetPosition(int x, int y);
+  void SetSize(int w, int h);
+  void SetVisibility(bool visible);
+  bool IsVisible();
 
  protected:
-  uint _x;
-  uint _y;
+  int _x;
+  int _y;
+  int _w;
+  int _h;
+  bool _isVisible = true;
 };
 
 #endif

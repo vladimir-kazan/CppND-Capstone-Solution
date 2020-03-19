@@ -1,3 +1,4 @@
 # sizes and positions of board elements
-# format: int size;int x;int y;char[] direction
-2;0;0;down
+# format: x, y, size, color
+0;0;2;red
+
