@@ -3,23 +3,23 @@
 Game::Game() : _grid(6, vector<int>(6, -1)) {
   cout << "Game created" << endl;
 
-  _board.SetPosition(10, 10);
+  _board.SetPosition(10, 50);
   _board.SetSize(620, 620, 20);
   _objects.emplace_back(&_board);
-
 }
 
 Game::~Game() {
-  cout << "Game destroyed" << endl;
+  cout << "~Game()" << endl;
 }
 
 void Game::Run(Controller&& controller,
                Renderer&& renderer,
                size_t frameDuration) {
+  Text text = Text{std::string("Hello world")};
+  _objects.emplace_back(&text);
 
-  auto empty = EmptyBlock{20, 20, 100, 100};
-  _objects.push_back(&empty);
-
+  auto empty = EmptyBlock{20, 60, 100, 100};
+  _objects.emplace_back(&empty);
 
   bool running = true;
   GameCommand command;

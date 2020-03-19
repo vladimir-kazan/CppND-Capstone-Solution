@@ -8,6 +8,7 @@
 #include "objects/board.h"
 #include "objects/empty-block.h"
 #include "objects/object2D.h"
+#include "objects/text.h"
 #include "renderer.h"
 
 using std::cout;

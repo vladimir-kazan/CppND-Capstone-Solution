@@ -1,10 +1,11 @@
 #ifndef OBJECTS_BOARD_H
 #define OBJECTS_BOARD_H
 
+#include <SDL2/SDL.h>
+
 #include <iostream>
 
 #include "../colors.h"
-#include "SDL2/SDL.h"
 #include "object2D.h"
 
 class Board : public Object2D {

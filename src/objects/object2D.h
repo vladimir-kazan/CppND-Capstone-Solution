@@ -1,7 +1,7 @@
 #ifndef OBJECTS_OBJECT_2D_H
 #define OBJECTS_OBJECT_2D_H
 
-#include "SDL2/SDL.h"
+#include <SDL2/SDL.h>
 
 class Object2D {
  public:

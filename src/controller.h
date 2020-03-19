@@ -1,10 +1,11 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
+#include <SDL2/SDL.h>
+
 #include <iostream>
 
 #include "./utils.h"
-#include "SDL2/SDL.h"
 
 using std::cout;
 using std::endl;

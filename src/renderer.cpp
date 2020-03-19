@@ -43,6 +43,7 @@ Renderer::Renderer(RendererOptions options)
 Renderer::~Renderer() {
   SDL_DestroyWindow(_sdlWindow);
   SDL_Quit();
+  TTF_Quit();
   std::cout << "Renderer destroyed" << std::endl;
 }
 

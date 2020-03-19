@@ -36,3 +36,4 @@ macro(configure_files srcDir destDir)
 endmacro(configure_files)
 
 configure_files(levels levels)
+configure_files(fonts fonts)

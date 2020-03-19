@@ -10,9 +10,9 @@
 int main() {
   constexpr char title[] = "Udacity Capstone Game";
   constexpr std::size_t screenWidth = 640;
-  constexpr std::size_t screenHeight = 640;
-  constexpr std::size_t kFramesPerSecond{60};
-  constexpr std::size_t kMsPerFrame{1000 / kFramesPerSecond};
+  constexpr std::size_t screenHeight = 680;
+  constexpr std::size_t framesPerSecond{60};
+  constexpr std::size_t msPerFrame{1000 / framesPerSecond};
 
   RendererOptions options;
   options.width = screenWidth;
@@ -24,6 +24,6 @@ int main() {
   Controller controller;
 
   Game game;
-  game.Run(std::move(controller), std::move(renderer), kMsPerFrame);
+  game.Run(std::move(controller), std::move(renderer), msPerFrame);
   return 0;
 }

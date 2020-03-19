@@ -1,12 +1,13 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+
 #include <iostream>
 #include <string>
 #include <vector>
 
-#include "SDL2/SDL.h"
-#include "SDL2/SDL_ttf.h"
 #include "objects/object2D.h"
 #include "utils.h"
 
@@ -17,7 +18,7 @@ struct RendererOptions {
   size_t width;
   size_t height;
   const char* title;
-  Color clearColor;
+  SDL_Color clearColor;
 };
 
 class Renderer {
@@ -34,7 +35,7 @@ class Renderer {
   const size_t _width;
   const size_t _height;
   const char* _title;
-  Color _clearColor;
+  SDL_Color _clearColor;
   void _updateTitle();
 };
 
