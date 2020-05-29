@@ -20,24 +20,35 @@ TODO: install vcpkg and deps
   * Linux: gcc / g++ is installed by default on most Linux distros
   * Mac: same deal as make - [install Xcode command line tools](https://developer.apple.com/xcode/features/)
   * Windows: recommend using [MinGW](http://www.mingw.org/)
-* vcpkg 
+* vcpkg
+  * `git clone https://github.com/Microsoft/vcpkg`
+  * `cd vcpkg && ./bootstrap-vcpkg.sh`
+  * set environment variable `export VCPKG=<folder with vcpkg>`
+  * set alias `alias vcpkg=${VCPKG}/vcpkg`
+  * `vcpkg install sdl2`
+  * `vcpkg install sdl2-ttf`
 * SDL2 >= 2.0
+  * `vcpkg install sdl2`
   * All installation instructions can be found [here](https://wiki.libsdl.org/Installation)
   * Note that for Linux, an `apt` or `apt-get` installation is preferred to building from source.
   * https://www.libsdl.org/download-2.0.php
 * SDL2_ttf
+  * `vcpkg install sdl2-ttf`
   * `brew install sdl2_ttf`
   * TODO: for linux
+  
 ## Basic Build Instructions
 
 1. Clone this repo.
 2. Run
-    - `make release && make run`
-    - or with explictely defined path to **vcpkg**: 
-    ```sh
-    export VCPKG=~/bin/vcpkg
-    make release && make run
-    ```
+
+* `make release && make run`
+* or with explictely defined path to **vcpkg**:
+
+  ```sh
+  export VCPKG=~/bin/vcpkg
+  make release && make run
+  ```
 
 ---
 # TODO:

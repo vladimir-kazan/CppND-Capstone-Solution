@@ -1,9 +1,5 @@
 DEBUG_DEST := debug
 RELEASE_DEST := build
-VCPKG := $(if $(VCPKG),$(VCPKG),~/bin/vcpkg)
-# ifeq ($(VCPKG),)
-# VCPKG := ~/bin/vcpkg
-# endif
 CMAKE_TOOLCHAIN_FILE := ${VCPKG}/scripts/buildsystems/vcpkg.cmake
 $(info Using toolchain file: ${CMAKE_TOOLCHAIN_FILE})
 
@@ -29,7 +25,6 @@ build-dev: | $(DEBUG_DEST)
 
 $(DEBUG_DEST):
 	@mkdir -p $@
-	@echo ${VCPKG_CMAKE}
 	@cd $@ && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE} ..
 
 # LLVM, Google, Chromium, Mozilla, WebKit
