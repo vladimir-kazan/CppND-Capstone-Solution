@@ -24,6 +24,7 @@ int main() {
   Controller controller;
 
   Game game;
+  game.LoadLevelsAsync();
   game.Run(std::move(controller), std::move(renderer), msPerFrame);
   return 0;
 }

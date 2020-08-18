@@ -16,7 +16,7 @@ Game::Game() : _grid(6, vector<int>(6, -1)) {
 
   _board.SetPosition(10, 50);
   _board.SetSize(620, 620, 20);
-  // keep order
+  // Create objects to render, keep the order
   _objects.emplace_back(&_title);
   _objects.emplace_back(&_board);
   _objects.emplace_back(&_centeredText);
@@ -67,6 +67,12 @@ void Game::SetCenteredText(const char* text) {
   _centeredText.SetText(text);
 }
 
+void Game::LoadLevelsAsync() {
+  _loadLevels();
+}
+
+// privates
+
 void Game::_processInput(GameCommand& command) {
   if (command.dX != 0) {
     cout << "dx: " << command.dX << endl;
@@ -84,4 +90,6 @@ void Game::_processInput(GameCommand& command) {
 
 void Game::_loadLevels() {
   // TODO async here
+  cout << "TODO: _loadLevels()" << endl;
+  _centeredText.SetVisibility(true);
 }

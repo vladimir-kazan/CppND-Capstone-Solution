@@ -23,8 +23,9 @@ void Board::Render(SDL_Renderer& renderer) {
   //                        BorderLight.a);
   // SDL_RenderDrawLine(&renderer, 20, 10, 20, 620);
   uint x1 = _x;
-  uint x2 = _x + _width;
   uint y1 = _y;
+
+  uint x2 = _x + _width;
   uint y2 = _y + _height;
   uint offset = _thickness / 2;
 
@@ -38,23 +39,14 @@ void Board::Render(SDL_Renderer& renderer) {
   SDL_RenderDrawLine(&renderer, x1, y1, x1, y2);  // left
   SDL_RenderDrawLine(&renderer, x1 + offset, y1 + offset, x1 + offset,
                      y2 - offset);                // left
-  SDL_RenderDrawLine(&renderer, x2, y1, x2, y2);  // right
-  SDL_RenderDrawLine(&renderer, x2 - offset, y1 + offset, x2 - offset,
-                     y2 - offset);  // right
 
-  // uint stepX = (_width - _thickness) / 6;
-  // uint stepY = (_height - _thickness) / 6;
+  // right
+  uint blockH = _height / 6;
+  SDL_RenderDrawLine(&renderer, x2, y1, x2, y2 - blockH * 4);
+  SDL_RenderDrawLine(&renderer, x2 - offset, y1 + offset, x2 - offset, y2 - blockH * 4);
+  SDL_RenderDrawLine(&renderer, x2 - offset, y2 - blockH * 4, x2, y2 - blockH * 4);
 
-  // x1 = x1 + offset;
-  // y1 = y1 + offset;
-  // y2 = y2 - offset;
-  // SDL_RenderDrawLine(&renderer, x1 + stepX, y1, x1 + stepX, y2);  // left
-  // SDL_RenderDrawLine(&renderer, x1 + stepX * 2, y1, x1 + stepX * 2,
-  //                    y2);  // left
-  // SDL_RenderDrawLine(&renderer, x1 + stepX * 3, y1, x1 + stepX * 3,
-  //                    y2);  // left
-  // SDL_RenderDrawLine(&renderer, x1 + stepX * 4, y1, x1 + stepX * 4,
-  //                    y2);  // left
-  // SDL_RenderDrawLine(&renderer, x1 + stepX * 5, y1, x1 + stepX * 5,
-  //                    y2);  // left
+  SDL_RenderDrawLine(&renderer, x2 - offset, y2 - blockH * 3, x2, y2 - blockH * 3);
+  SDL_RenderDrawLine(&renderer, x2 - offset, y2 - blockH * 3, x2 - offset, y2 - offset);
+  SDL_RenderDrawLine(&renderer, x2, y2 - blockH * 3, x2, y2);
 }

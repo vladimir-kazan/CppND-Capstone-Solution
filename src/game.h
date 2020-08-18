@@ -24,6 +24,7 @@ class Game {
   void Run(Controller&& controller, Renderer&& renderer, size_t frameDuration);
   void SetTitle(const char* text);
   void SetCenteredText(const char* text);
+  void LoadLevelsAsync();
 
  private:
   Board _board{};

@@ -72,6 +72,7 @@ void Renderer::Render(const std::vector<Object2D*>& objects) {
 }
 
 // private
+
 void Renderer::_updateTitle() {
   if (_sdlWindow != nullptr) {
     SDL_SetWindowTitle(_sdlWindow, _title);

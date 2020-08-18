@@ -1,4 +1,4 @@
 # sizes and positions of board elements
-# format: x, y, size, color
-0;0;2;red
+# format: x-start, y-start, x-end, y-end, type
+0;0;0;2;red
 

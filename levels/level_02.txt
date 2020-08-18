@@ -1,3 +1,0 @@
-# sizes and positions of board elements
-# format: int size;int x;int y;char[] direction
-2;0;0;down
