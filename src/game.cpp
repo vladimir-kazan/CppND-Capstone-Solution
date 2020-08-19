@@ -1,6 +1,6 @@
 #include "game.h"
 
-Game::Game() : _grid(6, vector<int>(6, -1)) {
+Game::Game() : _grid(6, vector<int>(6, -1)), _levels_loaded{false}, _current_level{0} {
   cout << "Game created" << endl;
   // screen 640 x 680
   _title.SetPosition(0, 0);
@@ -20,6 +20,7 @@ Game::Game() : _grid(6, vector<int>(6, -1)) {
   _objects.emplace_back(&_title);
   _objects.emplace_back(&_board);
   _objects.emplace_back(&_centeredText);
+  //
 }
 
 Game::~Game() {
@@ -43,12 +44,23 @@ void Game::Run(Controller&& controller,
   Uint32 frame_end;
   Uint32 frame_duration;
   while (running) {
+
+    if (_current_level == 0 && _levels_loaded) {
+      _current_level = 1;
+      auto nextTitle = "Capstone project - level " + to_string(_current_level);
+      SetTitle(nextTitle);
+      // _initLevel(1);
+    }
+
     frame_start = SDL_GetTicks();
 
     controller.HandleInput(running, command);
     _processInput(command);
     // render all elements
+    renderer.PreRender();
     renderer.Render(_objects);
+    renderer.Render(_cars);
+    renderer.PostRender();
 
     frame_end = SDL_GetTicks();
     frame_duration = frame_end - frame_start;
@@ -58,9 +70,8 @@ void Game::Run(Controller&& controller,
   }
 }
 
-void Game::SetTitle(const char* text) {
+void Game::SetTitle(const string text) {
   _title.SetText(text);
-  // center it
 }
 
 void Game::SetCenteredText(const char* text) {
@@ -68,7 +79,9 @@ void Game::SetCenteredText(const char* text) {
 }
 
 void Game::LoadLevelsAsync() {
-  _loadLevels();
+  _levels_loaded = false;
+  std::thread t(&Game::_loadLevels, this);
+  t.detach();
 }
 
 // privates
@@ -89,7 +102,12 @@ void Game::_processInput(GameCommand& command) {
 }
 
 void Game::_loadLevels() {
-  // TODO async here
-  cout << "TODO: _loadLevels()" << endl;
+  std::lock_guard<std::mutex> lck(_levels_mutex);
+
   _centeredText.SetVisibility(true);
+  cout << "TODO: _loadLevels()" << endl;
+  std::this_thread::sleep_for(std::chrono::seconds(2));
+  cout << "TODO: _loadLevels() = done." << endl;
+  _centeredText.SetVisibility(false);
+  _levels_loaded = true;
 }

@@ -27,7 +27,9 @@ class Renderer {
   ~Renderer();
   void SetTitle(const char* title);
   void SetTitle(string& title);
+  void PreRender();
   void Render(const std::vector<Object2D*>& objects);
+  void PostRender();
 
  private:
   SDL_Window* _sdlWindow;

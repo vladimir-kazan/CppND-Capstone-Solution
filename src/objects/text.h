@@ -21,16 +21,15 @@ enum class VerticalAlignment { none, centered };
 class Text : public Object2D {
  public:
   Text();
-  Text(char* text);
   ~Text();
   void Render(SDL_Renderer& renderer) override;
-  void SetText(const char* text);
+  void SetText(const string text);
   void SetHorizontalAlignment(HorizontalAlignment align);
   void SetVerticalAlignment(VerticalAlignment align);
   void SetFontSize(int size);
 
  private:
-  const char* _text;
+  string _text;
   TTF_Font* _font = nullptr;
   SDL_Color _color;
   SDL_Texture* _tex = nullptr;

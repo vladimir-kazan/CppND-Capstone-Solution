@@ -5,20 +5,15 @@ Text::Text() {
   cout << "Text()" << endl;
 }
 
-Text::Text(char* text) : _text(text) {
-  _setDefaults();
-  cout << "Text(string text)" << endl;
-}
-
 Text::~Text() {
-  cout << "~Text()" << endl;
+  cout << "~Text() " << _text << endl;
   if (_font != nullptr)
     TTF_CloseFont(_font);
   //  SDL_DestroyTexture(texture);
 }
 
 void Text::Render(SDL_Renderer& renderer) {
-  SDL_Surface* solid = TTF_RenderText_Solid(_font, _text, _color);
+  SDL_Surface* solid = TTF_RenderText_Solid(_font, _text.c_str(), _color);
   SDL_Texture* solidTexture = SDL_CreateTextureFromSurface(&renderer, solid);
   SDL_FreeSurface(solid);
   int x = _x;
@@ -34,9 +29,10 @@ void Text::Render(SDL_Renderer& renderer) {
   SDL_RenderCopy(&renderer, solidTexture, nullptr, &solidRect);
 }
 
-void Text::SetText(const char* text) {
+void Text::SetText(const string text) {
   _text = text;
-  SDL_Surface* solid = TTF_RenderText_Solid(_font, _text, _color);
+  // to center it
+  SDL_Surface* solid = TTF_RenderText_Solid(_font, _text.c_str(), _color);
   _clipWidth = solid->clip_rect.w;
   _clipHeight = solid->clip_rect.h;
   SDL_FreeSurface(solid);

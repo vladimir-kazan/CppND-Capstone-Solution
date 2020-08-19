@@ -57,17 +57,21 @@ void Renderer::SetTitle(string& title) {
   _updateTitle();
 }
 
-void Renderer::Render(const std::vector<Object2D*>& objects) {
+void Renderer::PreRender() {
   // Clear screen
   SDL_SetRenderDrawColor(_sdlRenderer, _clearColor.r, _clearColor.g,
                          _clearColor.b, _clearColor.a);
   SDL_RenderClear(_sdlRenderer);
+}
 
+void Renderer::Render(const std::vector<Object2D*>& objects) {
   for (auto obj : objects) {
     if (obj->IsVisible())
       obj->Render(*_sdlRenderer);
   }
+}
 
+void Renderer::PostRender() {
   SDL_RenderPresent(_sdlRenderer);
 }
 

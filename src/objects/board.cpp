@@ -38,15 +38,19 @@ void Board::Render(SDL_Renderer& renderer) {
                      y2 - offset);                // bottom
   SDL_RenderDrawLine(&renderer, x1, y1, x1, y2);  // left
   SDL_RenderDrawLine(&renderer, x1 + offset, y1 + offset, x1 + offset,
-                     y2 - offset);                // left
+                     y2 - offset);  // left
 
   // right
   uint blockH = _height / 6;
   SDL_RenderDrawLine(&renderer, x2, y1, x2, y2 - blockH * 4);
-  SDL_RenderDrawLine(&renderer, x2 - offset, y1 + offset, x2 - offset, y2 - blockH * 4);
-  SDL_RenderDrawLine(&renderer, x2 - offset, y2 - blockH * 4, x2, y2 - blockH * 4);
+  SDL_RenderDrawLine(&renderer, x2 - offset, y1 + offset, x2 - offset,
+                     y2 - blockH * 4);
+  SDL_RenderDrawLine(&renderer, x2 - offset, y2 - blockH * 4, x2,
+                     y2 - blockH * 4);
 
-  SDL_RenderDrawLine(&renderer, x2 - offset, y2 - blockH * 3, x2, y2 - blockH * 3);
-  SDL_RenderDrawLine(&renderer, x2 - offset, y2 - blockH * 3, x2 - offset, y2 - offset);
+  SDL_RenderDrawLine(&renderer, x2 - offset, y2 - blockH * 3, x2,
+                     y2 - blockH * 3);
+  SDL_RenderDrawLine(&renderer, x2 - offset, y2 - blockH * 3, x2 - offset,
+                     y2 - offset);
   SDL_RenderDrawLine(&renderer, x2, y2 - blockH * 3, x2, y2);
 }
